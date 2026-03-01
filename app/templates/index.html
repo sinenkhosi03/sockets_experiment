@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Learning Flask1</h1>
+<form action="{{url_for('main.serverResponse')}}" method="post" >
+    <input type="text" name="phrase" placeholder="Enter any phrase">
+    <input type="submit" value="send">
+</form>
+
+
+{% endblock %}

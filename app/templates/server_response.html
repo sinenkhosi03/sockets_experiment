@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>SERVER RESPONSE</h1>
+<p>{{ newPhrase }}</p>
+<input type="button" value="return" action="{{ url_for('main.return_home') }}">
+{% endblock %}
