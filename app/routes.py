@@ -16,11 +16,12 @@ def serverResponse():
     modifiedPhrase = ""
     if request.method =="POST":
         clientSocket = socket(AF_INET, SOCK_STREAM)
+        clientSocket.connect((serverName,serverPort))
         phrase = request.form["phrase"]
         print(phrase)
-        clientSocket.sendto(phrase.lower().encode(),(serverName, serverPort))
-        modifiedPhrase, serverAddress = clientSocket.recvfrom(2048)
-        print(modifiedPhrase.decode(), serverAddress, sep=" ")
+        clientSocket.send(phrase.lower().encode())
+        modifiedPhrase= clientSocket.recvfrom(2048)
+        print(modifiedPhrase.decode())
         clientSocket.close()
 
 
