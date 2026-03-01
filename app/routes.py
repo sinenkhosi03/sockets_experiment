@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, url_for, redirect, request
 from socket import *
 
-serverName="walmart-biblical.gl.at.ply.gg"
-serverPort = 18417
+serverName="bore.pub"
+serverPort = 37907
 
 
 main = Blueprint("main", __name__)
@@ -15,7 +15,7 @@ def index():
 def serverResponse():
     modifiedPhrase = ""
     if request.method =="POST":
-        clientSocket = socket(AF_INET, SOCK_DGRAM)
+        clientSocket = socket(AF_INET, SOCK_STREAM)
         phrase = request.form["phrase"]
         print(phrase)
         clientSocket.sendto(phrase.lower().encode(),(serverName, serverPort))
