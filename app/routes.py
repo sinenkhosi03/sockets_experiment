@@ -1,9 +1,8 @@
 from flask import Blueprint, render_template, url_for, redirect, request
-from socket import *
+from socket import socket, AF_INET, SOCK_STREAM
 
-serverName="bore.pub"
+serverName = "bore.pub"
 serverPort = 37907
-
 
 main = Blueprint("main", __name__)
 
@@ -14,17 +13,15 @@ def index():
 @main.route("/server_response", methods=["GET", "POST"])
 def serverResponse():
     modifiedPhrase = ""
-    if request.method =="POST":
-        clientSocket = socket(AF_INET, SOCK_STREAM)
-        clientSocket.connect((serverName,serverPort))
+    if request.method == "POST":
+        clientSocket = socket(AF_INET, SOCK_STREAM)  # TCP
         phrase = request.form["phrase"]
         print(phrase)
-        clientSocket.send(phrase.lower().encode())
-        modifiedPhrase= clientSocket.recvfrom(2048)
-        print(modifiedPhrase.decode())
+        clientSocket.connect((serverName, serverPort))  # TCP needs connect first
+        clientSocket.send(phrase.lower().encode())      # then send
+        modifiedPhrase = clientSocket.recv(2048).decode()
+        print(modifiedPhrase)
         clientSocket.close()
-
-
     return render_template("server_response.html", newPhrase=modifiedPhrase)
 
 @main.route('/return')
