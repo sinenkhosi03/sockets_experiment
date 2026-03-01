@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, url_for, redirect, request
 from socket import socket, AF_INET, SOCK_STREAM
 
 serverName = "bore.pub"
-serverPort = 37907
+serverPort = 11769
 
 main = Blueprint("main", __name__)
 
