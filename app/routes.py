@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, url_for, redirect, request
 from socket import socket, AF_INET, SOCK_STREAM
 
-serverName = "bore.pub"
-serverPort = 11769
+serverName = "0.0.0.0"
+serverPort = 9800
 
 main = Blueprint("main", __name__)
 
