@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, url_for, redirect, request
 from socket import socket, AF_INET, SOCK_STREAM
 
 serverName = "0.0.0.0"
-serverPort = 9800
+serverPort = 10900
 
 main = Blueprint("main", __name__)
 
